@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  intl:
+  flutter_slidable:
 
 dev_dependencies:
   flutter_test:
