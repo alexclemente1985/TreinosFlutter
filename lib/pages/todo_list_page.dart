@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:lista_tarefas_flutter/models/todo.dart';
+import 'package:lista_tarefas_flutter/repositories/todo_repository.dart';
 import 'package:lista_tarefas_flutter/widgets/todo_list-item.dart';
 
 class TodoListPage extends StatefulWidget{
@@ -15,8 +16,23 @@ class TodoListPage extends StatefulWidget{
 class _TodoListPageState extends State<TodoListPage> {
 
   final TextEditingController todoController = TextEditingController();
+  final TodoRepository todoRepository = TodoRepository();
 
   List<Todo> todos = [];
+
+  // Chamado uma única vez na criação do widget
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    todoRepository.getTodoList().then((value){
+      setState(() {
+        todos = value;
+      });
+    });
+
+  }
 
   void deleteAllTasks(){
     showDialog(context: context, builder: (context) => AlertDialog(
@@ -60,6 +76,8 @@ class _TodoListPageState extends State<TodoListPage> {
       todos.removeAt(index);
     });
 
+    todoRepository.saveTodoList(todos);
+
     ScaffoldMessenger.of(context).clearSnackBars();
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -73,6 +91,7 @@ class _TodoListPageState extends State<TodoListPage> {
             setState(() {
               todos.insert(index, todo);
             });
+            todoRepository.saveTodoList(todos);
           }
           ),
           duration: const Duration(seconds: 5),
@@ -84,8 +103,10 @@ class _TodoListPageState extends State<TodoListPage> {
     setState(() {
       var todo = Todo(title: todoController.text, dateTime: DateTime.now(), taskCompleted: false);
       todos.add(todo);
-      todoController.clear();
+      // todoController.clear();
     });
+    todoController.clear();
+    todoRepository.saveTodoList(todos);    
   }
 
   @override
