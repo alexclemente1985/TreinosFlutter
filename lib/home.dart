@@ -9,8 +9,7 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueAccent,
           foregroundColor: Colors.white,
@@ -28,7 +27,9 @@ class HomeState extends State<Home> {
                 child: Text("Seção 1")
               ),
               ElevatedButton(
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.pushNamed(context,"/section2", arguments: 1);
+                }, 
                 child: Text("Seção 2")
               ),
               ElevatedButton(
@@ -52,7 +53,7 @@ class HomeState extends State<Home> {
           ),
         ),
       )
-      ));
+      );
   }
 
 }

@@ -13,8 +13,7 @@ class Section1 extends StatefulWidget{
 class Section1State extends State<Section1>{
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
           foregroundColor: Colors.white,
@@ -53,6 +52,6 @@ class Section1State extends State<Section1>{
           ),
         ),
       )
-      ));
+      );
   }
 }
