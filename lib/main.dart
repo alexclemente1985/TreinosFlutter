@@ -10,6 +10,10 @@ import 'package:flutter_intermediate/sections/section_2/gridview.dart';
 import 'package:flutter_intermediate/sections/section_2/section_2.dart';
 import 'package:flutter_intermediate/sections/section_2/stepper.dart';
 import 'package:flutter_intermediate/sections/section_2/tab_bar_view.dart';
+import 'package:flutter_intermediate/sections/section_3/animated_pie_chart.dart';
+import 'package:flutter_intermediate/sections/section_3/charts.dart';
+import 'package:flutter_intermediate/sections/section_3/grouping_data.dart';
+import 'package:flutter_intermediate/sections/section_3/section_3.dart';
 
 Map<String, String> routePaths = {
    "home": "/",
@@ -23,6 +27,10 @@ Map<String, String> routePaths = {
     "tab_bar_view": "/section2/tab_bar_view",
     "stepper": "/section2/stepper",
     "gridview": "/section2/gridview",
+    "section3": "/section3",
+    "charts": "/section3/charts",
+    "grouping_data": "/section3/grouping_data",
+    "animated_pie_charts": "/section3/animated_pie_charts"
 };
 
 Map<String, WidgetBuilder> routes = {
@@ -37,6 +45,10 @@ Map<String, WidgetBuilder> routes = {
     routePaths["tab_bar_view"]!: (BuildContext context) => TabBarViewWidget(),
     routePaths["stepper"]!: (BuildContext context) => StepperWidget(),
     routePaths["gridview"]!: (BuildContext context) => GridviewWidget(),
+    routePaths["section3"]!: (BuildContext context) => Section3(routes: routePaths),
+    routePaths["charts"]!: (BuildContext context) => Charts(),
+    routePaths["grouping_data"]!: (BuildContext context) => GroupingData(),
+    routePaths["animated_pie_charts"]!: (BuildContext context) => AnimatedPieChart(),
 
 };
 
