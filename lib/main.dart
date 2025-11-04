@@ -14,6 +14,11 @@ import 'package:flutter_intermediate/sections/section_3/animated_pie_chart.dart'
 import 'package:flutter_intermediate/sections/section_3/charts.dart';
 import 'package:flutter_intermediate/sections/section_3/grouping_data.dart';
 import 'package:flutter_intermediate/sections/section_3/section_3.dart';
+import 'package:flutter_intermediate/sections/section_4/child_to_parent.dart';
+import 'package:flutter_intermediate/sections/section_4/custom_widget.dart';
+import 'package:flutter_intermediate/sections/section_4/section_4.dart';
+import 'package:flutter_intermediate/sections/section_4/stateful_widget.dart';
+import 'package:flutter_intermediate/sections/section_4/widget_within.dart';
 
 Map<String, String> routePaths = {
    "home": "/",
@@ -30,7 +35,12 @@ Map<String, String> routePaths = {
     "section3": "/section3",
     "charts": "/section3/charts",
     "grouping_data": "/section3/grouping_data",
-    "animated_pie_charts": "/section3/animated_pie_charts"
+    "animated_pie_charts": "/section3/animated_pie_charts",
+    "section4": "/section4",
+    "custom_widget": "/section4/custom_widget",
+    "stateful_widget": "/section4/stateful_widget",
+    "widget_within": "/section4/widget_within",
+    "child_to_parent": "/section4/child_to_parent",
 };
 
 Map<String, WidgetBuilder> routes = {
@@ -49,7 +59,12 @@ Map<String, WidgetBuilder> routes = {
     routePaths["charts"]!: (BuildContext context) => Charts(),
     routePaths["grouping_data"]!: (BuildContext context) => GroupingData(),
     routePaths["animated_pie_charts"]!: (BuildContext context) => AnimatedPieChart(),
-
+    routePaths["section4"]!: (BuildContext context) => Section4(routes: routePaths),
+    routePaths["custom_widget"]!: (BuildContext context) => CustomWidget(),
+    routePaths["stateful_widget"]!: (BuildContext context) => StatefulWidgetComponent(),
+    routePaths["widget_within"]!: (BuildContext context) => WidgetWithin(),
+    routePaths["child_to_parent"]!: (BuildContext context) => ChildToParent(),
+    
 };
 
 void main() {

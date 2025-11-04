@@ -39,7 +39,9 @@ class HomeState extends State<Home> {
                 child: Text("Seção 3")
               ),
               ElevatedButton(
-                onPressed: (){}, 
+                onPressed: (){
+                   Navigator.pushNamed(context,"/section4", arguments: 1);
+                }, 
                 child: Text("Seção 4")
               ),
               ElevatedButton(

@@ -66,7 +66,7 @@ class GroupingDataState extends State<GroupingData>{
       appBar: AppBar(
         title: Text("GroupingData"),
         backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
+        foregroundColor: const Color.from(alpha: 1, red: 1, green: 1, blue: 1),
       ),
       body: Container(
         padding: EdgeInsets.all(32),
