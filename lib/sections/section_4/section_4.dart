@@ -14,7 +14,7 @@ class Section4State extends State<Section4>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Seção 4'),
+        title: Text('Seção 4 - Custom Widgets'),
         backgroundColor: Colors.orange,
         foregroundColor: Colors.white,
       ),
