@@ -1,8 +1,8 @@
 import 'package:cinetopia/ui/components/movie_card.dart';
 import 'package:flutter/material.dart';
 
-class SearchMovies extends StatelessWidget {
-  const SearchMovies({super.key});
+class Releases extends StatelessWidget {
+  const Releases({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,30 +13,16 @@ class SearchMovies extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.only(bottom: 8),
-            child: Image.asset("assets/popular.png", height: 80, width: 80),
+            child: Image.asset("assets/upcoming.png", height: 80, width: 80),
           ),
         ),
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.only(bottom: 40),
             child: Text(
-              "Filmes Populares",
+              "Próximos Lançamentos",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 32),
-            child: TextField(
-              style: TextStyle(fontSize: 14),
-              decoration: InputDecoration(
-                label: Text("Pesquisar"),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
             ),
           ),
         ),
