@@ -1,12 +1,19 @@
+import 'package:cinetopia/app/viewmodels/search_movies_viewmodel.dart';
 import 'package:cinetopia/ui/components/movie_card.dart';
 import 'package:flutter/material.dart';
 
 class Releases extends StatelessWidget {
-  const Releases({super.key});
+  final SearchMoviesViewmodel viewModel = SearchMoviesViewmodel();
+  Releases({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return FutureBuilder(
+      future: viewModel.getReleasedMovies(), 
+      builder: (builder, snapshot){
+        if(snapshot.hasData){
+          return CustomScrollView(
       //opção que evita o erro de tamanho indefinido ao usar uma lista
       slivers: [
         //depende do encapsulamento de widgets em SliverToBoxAdapter
@@ -28,10 +35,16 @@ class Releases extends StatelessWidget {
         ),
         SliverList.builder(
           itemBuilder: (context, index) =>
-              Padding(padding: EdgeInsets.only(bottom: 32), child: MovieCard()),
+              Padding(padding: EdgeInsets.only(bottom: 32), child: MovieCard(movie: viewModel.moviesList[index])),
           itemCount: 10,
         ),
       ],
+    );
+        }
+        else {
+          return Center(child: CircularProgressIndicator(),);
+        }
+      }
     );
   }
 }
