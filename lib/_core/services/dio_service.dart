@@ -15,7 +15,7 @@ class DioService {
   LoadingService loadingService = LoadingService();
 
 
-  Future<void> saveLocalToServer(AppDataBase appDataBase) async{
+  Future<bool> saveLocalToServer(AppDataBase appDataBase) async{
     try{
       loadingService.setLoading(true);
       Map<String, dynamic> localData =  await LocalDataHandler().localDataToMap(appdatabase: appDataBase);
@@ -28,6 +28,8 @@ class DioService {
           contentType: "application/json; utf-8",
        )
       ); 
+
+      return true;
     }
     catch (e){
       throw "Erro na operação de salvamento local: ${e}";
@@ -37,7 +39,7 @@ class DioService {
     }
   }
 
-  getDataFromServer(AppDataBase appDataBase) async {
+  Future<bool> getDataFromServer(AppDataBase appDataBase) async {
     try{
       loadingService.setLoading(true);
 
@@ -55,12 +57,33 @@ class DioService {
           map['listins'] = response.data;
 
           await LocalDataHandler().mapToLocalData(map: map, appdatabase: appDataBase);
-
+          
         }
+
+        return true;
       }
+      return false;
     }
     catch (e){
+      throw "Falha na sincronização dos dados: $e";
+    }
+    finally{
+      loadingService.setLoading(false);
+    }
+  }
 
+  Future<bool> clearServerData() async{
+    try{
+      loadingService.setLoading(true);
+      Response response = await _dio.delete("${url}listins.json");
+      if(response.statusCode == 200){
+        return true;
+      }
+
+      return false;
+    }
+    catch (e){
+      throw "Erro na operação de remoção de dados no servidor: $e";
     }
     finally{
       loadingService.setLoading(false);
