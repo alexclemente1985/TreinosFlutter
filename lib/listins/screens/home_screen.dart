@@ -176,16 +176,41 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   saveOnServer() async{
-   await _dioService.saveLocalToServer(_appDataBase);
+   await _dioService.saveLocalToServer(_appDataBase).then((value){
+    if(value && mounted){
+        String text = "Dados salvos na nuvem com sucesso!";
+        showSnackBar(text, context);
+      }
+   });
   //  return print("Realizando operação de sobrescrita de dados no servidor...");
   }
   syncWithServer() async {
-    await _dioService.getDataFromServer(_appDataBase);
+    await _dioService.getDataFromServer(_appDataBase).then((value){
+      if(value && mounted){
+        String text = "Sincronização com a nuvem concluída!";
+        showSnackBar(text, context);
+      }
+    });
     refresh();
     // return print("Realizando operação de sobrescrita de dados locais...");
   }
-  clearServerData(){
-    return print("Realizando operação de remoção de dados no servidor...");
+  clearServerData() async{
+    await _dioService.clearServerData().then((value){
+      if(value && mounted){
+        String text = "Dados removidos da nuvem com sucesso!";
+        showSnackBar(text, context);
+      }
+    });
+    // return print("Realizando operação de remoção de dados no servidor...");
+  }
+
+  showSnackBar(String text, BuildContext context){
+    final snackBar = SnackBar(
+      content: Text(text),
+      duration: Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   serverOperationsAlert(Function operation, String text, BuildContext context){
