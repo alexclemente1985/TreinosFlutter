@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   DioService _dioService = DioService();
 
+
   @override
   void initState() {
     _appDataBase = AppDataBase();
@@ -76,7 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: const Icon(Icons.add),
       ),
-      body: (listListins.isEmpty)
+      body: StreamBuilder(
+        stream: _dioService.loadingService.loadingStream, 
+        builder: (context, snapshot){
+          if(snapshot.data != null && snapshot.data == true){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          else{
+            return (listListins.isEmpty)
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -112,7 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-            ),
+            );
+          }
+        }
+      )
     );
   }
 
