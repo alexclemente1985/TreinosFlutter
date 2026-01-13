@@ -37,9 +37,9 @@ class MainApp extends StatelessWidget {
               return HomePage();
             }
             if (state is UnAuthenticated) {
-              return SigninPage();
+              return SignupPage();
             }
-            return SignupPage();
+            return SigninPage();
           },
         ),
       ),

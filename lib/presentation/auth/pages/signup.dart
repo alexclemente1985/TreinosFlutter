@@ -25,7 +25,6 @@ class SignupPage extends StatelessWidget {
         create: (context) => ButtonStateCubit(),
         child: BlocListener<ButtonStateCubit, ButtonState>(
           listener: (context, state) {
-            print(state);
             if (state is ButtonSuccessState) {
               Navigator.pushReplacement(
                 context,

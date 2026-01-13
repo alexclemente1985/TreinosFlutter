@@ -4,7 +4,9 @@ import 'package:signin_signup_logout/data/repository/auth.dart';
 import 'package:signin_signup_logout/data/source/auth_api_service.dart';
 import 'package:signin_signup_logout/data/source/auth_local_service.dart';
 import 'package:signin_signup_logout/domain/repository/auth.dart';
+import 'package:signin_signup_logout/domain/usecases/get_user.dart';
 import 'package:signin_signup_logout/domain/usecases/is_logged_in.dart';
+import 'package:signin_signup_logout/domain/usecases/logout.dart';
 import 'package:signin_signup_logout/domain/usecases/signin.dart';
 import 'package:signin_signup_logout/domain/usecases/signup.dart';
 
@@ -24,4 +26,6 @@ void setupServiceLocator() {
   sl.registerSingleton<SignupUseCase>(SignupUseCase());
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
   sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
+  sl.registerSingleton<GetUserUseCase>(GetUserUseCase());
+  sl.registerSingleton<LogoutUseCase>(LogoutUseCase());
 }
